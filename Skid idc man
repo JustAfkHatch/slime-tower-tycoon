@@ -1,0 +1,334 @@
+if not funcs then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/exceptional0/scr/main/funcs.lua"))()
+end
+
+local tps = game:GetService("TeleportService")
+game:GetService("CoreGui").RobloxPromptGui.promptOverlay.DescendantAdded:Connect(function()
+    local GUI = game.CoreGui.RobloxPromptGui.promptOverlay:FindFirstChild("ErrorPrompt")
+    if GUI then
+        if GUI.TitleFrame.ErrorTitle.Text:lower():match("disconnected") then
+            if #game.Players:GetPlayers() <= 1 then
+                game.Players.LocalPlayer:Kick("\nRejoining...")
+                task.wait(3)
+                tps:Teleport(game.PlaceId, game.Players.LocalPlayer)
+                while task.wait(15) do
+                tps:Teleport(game.PlaceId, game.Players.LocalPlayer)
+                end
+            else
+                task.wait(3)
+                tps:TeleportToPlaceInstance(game.PlaceId, game.JobId, funcs.lplr)
+                while task.wait(15) do
+                tps:TeleportToPlaceInstance(game.PlaceId, game.JobId, funcs.lplr)
+                end
+            end
+        end
+    end
+end)
+
+local prompt = game:GetService("CoreGui"):FindFirstChild("RobloxPromptGui"):FindFirstChild("promptOverlay")
+
+prompt.ChildAdded:Connect(function(obj)
+    if obj.Name == "ErrorPrompt" and obj:IsA("Frame") then
+        game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+    end
+end)
+
+for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+v:Disable()
+end
+
+while task.wait() do
+    if game:IsLoaded() then break; end
+end
+
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
+
+local Window = Library:CreateWindow('Vulture V1.0.2', 'Slime Tower Tycoon', 'Vulture V1.0.2', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
+
+--// Service
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+
+--// Remote
+local event = {
+    Merge = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.MergeDroppers,
+    Buy_Dropper = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.BuyDropper,
+    Buy_Speed = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.BuySpeed,
+    Deposit = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.DepositDrops,
+}
+
+--// Setting
+getgenv().Setting = {
+    Grab_slime = false,
+    Merge = false,
+    Buy_Dropper = {boolean = false,unit = 1},
+    Buy_Speed = false,
+    Deposit = false,
+}
+
+--// Script
+local Tab = Window:CreateTab('Automatics', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local Automatics = Tab:CreateSection('Automatics')
+
+local Toggle = Automatics:CreateToggle('Auto Collect Slime Drops', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+getgenv().Setting.Grab_slime = x;
+    if x then
+        Grab_slime()
+    end
+end)
+
+local Toggle = Automatics:CreateToggle('Auto Sell Slime Drops', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+	getgenv().Setting.Deposit = x;
+    if x then
+        Deposit()
+    end
+end)
+
+local Toggle = Automatics:CreateToggle('Auto Buy Rate Speed', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+	getgenv().Setting.Buy_Speed = x;
+    if x then
+        Buy_Speed()
+    end
+end)
+
+local Dropdown = Automatics:CreateDropdown('Buy Slimes', {'1', '5', '25', '50', '100'}, '1', 0.25, function(x)
+    getgenv().Setting.Buy_Dropper.unit = x;
+end)
+
+local Toggle = Automatics:CreateToggle('Auto Buy Slimes', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+	getgenv().Setting.Buy_Dropper.boolean = x;
+    if x then
+        Buy_Dropper(getgenv().Setting.Buy_Dropper.unit)
+    end
+end)
+
+local Toggle = Automatics:CreateToggle('Auto Merge', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+	getgenv().Setting.Merge = x;
+    if x then
+        Merge()
+    end
+end)
+
+getgenv().WS = 29;getgenv().JP = 50;
+local Slider = Automatics:CreateSlider('WalkSpeed', 29, 150, 29, Color3.fromRGB(0, 125, 255), function(x)
+    getgenv().WS = x;
+end)
+
+local Slider = Automatics:CreateSlider('JumpPower', 50, 400, 50, Color3.fromRGB(0, 125, 255), function(x)
+	getgenv().JP = x;
+end)
+
+RunService.Stepped:Connect(function()
+    if LocalPlayer.Character then
+        local Humanoid = LocalPlayer.Character:FindFirstChild("Humanoid")
+        if Humanoid then
+            Humanoid.WalkSpeed = tonumber(getgenv().WS)
+            Humanoid.JumpPower = tonumber(getgenv().JP)
+            if Humanoid.UseJumpPower ~= true then Humanoid.UseJumpPower = true end
+        end
+    end
+end)
+
+local Tab = Window:CreateTab('Misc/Credits', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local Misc = Tab:CreateSection('Misc/Credits')
+
+local Button = Misc:CreateButton('Destroy Textures (Fps Boost)', function()
+local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
+        local g = game
+        local w = g.Workspace
+        local l = g.Lighting
+        local t = w.Terrain
+        t.WaterWaveSize = 0
+        t.WaterWaveSpeed = 0
+        t.WaterReflectance = 0
+        t.WaterTransparency = 0
+        l.GlobalShadows = false
+        l.FogEnd = 9e9
+        l.Brightness = 0
+        settings().Rendering.QualityLevel = "Level01"
+        for i, v in pairs(g:GetDescendants()) do
+            if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+                v.Material = "Plastic"
+                v.Reflectance = 0
+            elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+                v.Transparency = 1
+            elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+                v.Lifetime = NumberRange.new(0)
+            elseif v:IsA("Explosion") then
+                v.BlastPressure = 1
+                v.BlastRadius = 1
+            elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+                v.Enabled = false
+            elseif v:IsA("MeshPart") then
+                v.Material = "Plastic"
+                v.Reflectance = 0
+                v.TextureID = 10385902758728957
+            end
+        end
+        for i, e in pairs(l:GetChildren()) do
+            if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+                e.Enabled = false
+            end
+        end
+    end)
+
+local Button = Misc:CreateButton('Inf Zoom', function()
+	        if InfiniteZoom then
+            game.Players.LocalPlayer.CameraMaxZoomDistance = 30
+            InfiniteZoom = false
+                else
+                    InfiniteZoom = true
+                if InfiniteZoom == true then
+        game.Players.LocalPlayer.CameraMaxZoomDistance = 123456789
+        end
+        end
+    end)
+
+local Button = Misc:CreateButton('Anti Afk Script/Low Gfx', function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/batusz/main/roblox/__Anti__Afk__Script__", true))()
+end)
+
+local Button = Misc:CreateButton('Server Hop', function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+end)
+
+local Button = Misc:CreateButton('Rejoin Game', function()
+	local TeleportService = game:GetService("TeleportService")
+	local Players = game:GetService("Players")
+	local LocalPlayer = Players.LocalPlayer
+	
+	local Rejoin = coroutine.create(function()
+	    local Success, ErrorMessage = pcall(function()
+	        TeleportService:Teleport(game.PlaceId, LocalPlayer)
+	    end)
+	
+	    if ErrorMessage and not Success then
+	        warn(ErrorMessage)
+	    end
+	end)
+	wait(0.1)
+	coroutine.resume(Rejoin)
+end)
+
+local Label = Misc:CreateLabel('Made By JustAfkHatch#4279')
+local Label = Misc:CreateLabel('I made it for fun because Fluxus wasnt working correctly')
+local Label = Misc:CreateLabel('Inspired By BreadLoader/Source')
+
+local LibraryFunctions = Window:CreateTab('UI Settings', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local UIFunctions = LibraryFunctions:CreateSection('UI Settings')
+
+local DestroyButton = UIFunctions:CreateButton('Destroy UI', function()
+    Library:DestroyUI()
+end)
+
+local ToggleKeybind = UIFunctions:CreateKeybind('Toggle UI', 'Q', function()
+    Library:ToggleUI()
+end)
+
+local TransparencySlider = UIFunctions:CreateSlider('Transparency', 0, 100, 0, Color3.fromRGB(0, 125, 255), function(Value)
+    Library:SetTransparency(Value / 100, true)
+end)
+
+local ConfigSection = LibraryFunctions:CreateSection('Config')
+
+local ConfigNameString = ''
+local ConfigName = ConfigSection:CreateTextbox('Config Name', 'Input', function(Value)
+    ConfigNameString = Value
+end)
+
+local SaveConfigButton = ConfigSection:CreateButton('Save Config', function()
+    Library:SaveConfig(ConfigNameString)
+end)
+
+local SelectedConfig = ''
+local ConfigsDropdown = ConfigSection:CreateDropdown('Configs', Library:GetConfigs(), nil, 0.25, function(Value)
+    SelectedConfig = Value
+end)
+
+local DeleteConfigButton = ConfigSection:CreateButton('Delete Config', function()
+    Library:DeleteConfig(SelectedConfig)
+end)
+
+local LoadConfigButton = ConfigSection:CreateButton('Load Config', function()
+    Library:LoadConfig(SelectedConfig)
+end)
+
+local RefreshConfigsButton = ConfigSection:CreateButton('Refresh', function()
+    ConfigsDropdown:UpdateDropdown(Library:GetConfigs())
+end)
+
+local ThemesSection = LibraryFunctions:CreateSection('Themes')
+
+local ThemesDropdown = ThemesSection:CreateDropdown('Themes', Library:GetThemes(), nil, 0.25, function(Value)
+    Library:ChangeTheme(Value)
+end)
+
+local ColorSection = LibraryFunctions:CreateSection('Custom Colors')
+
+for Index, CurrentColor in next, Library:ReturnTheme() do
+    ColorSection:CreateColorpicker(Index, CurrentColor, 0.25, function(Color)
+        Library:ChangeColor(Index, Color)
+    end, {true})
+end
+
+--// Function
+function Grab_slime()
+    if LocalPlayer.Character then
+        local hrp = LocalPlayer.Character.HumanoidRootPart
+        for i,v in ipairs(workspace["Drops"]:GetChildren()) do
+            if v:IsA("Part") then
+                v.CFrame = hrp.CFrame
+            end
+         end
+    end
+    local added;
+    added = workspace["Drops"].ChildAdded:Connect(function(v)
+        task.wait(.2)
+        if v:IsA("Part") and LocalPlayer.Character then
+            local hrp = LocalPlayer.Character.HumanoidRootPart
+            v.CFrame = hrp.CFrame
+        end
+    end)
+    task.spawn(function()
+        while task.wait(.1) do
+            if getgenv().Setting.Grab_slime ~= true then added:Disconnect() break; end
+        end
+    end)
+end
+
+function Deposit()
+    task.spawn(function()
+        while getgenv().Setting.Deposit and task.wait(.1) do
+            event.Deposit:FireServer()
+        end
+    end)
+end
+
+function Buy_Dropper(value)
+    task.spawn(function()
+        while getgenv().Setting.Buy_Dropper.boolean and task.wait(.1) do
+            local v = value or 1
+            event.Buy_Dropper:FireServer(tonumber(v))
+        end
+    end)
+end
+
+function Buy_Speed()
+    task.spawn(function()
+        while getgenv().Setting.Buy_Speed and task.wait(.1) do
+            event.Buy_Speed:FireServer(1)
+        end
+    end)
+end
+
+function Merge()
+    task.spawn(function()
+        while getgenv().Setting.Merge and task.wait(.1) do
+            event.Merge:FireServer()
+        end
+    end)
+end
