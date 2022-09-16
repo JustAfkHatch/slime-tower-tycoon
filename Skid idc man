@@ -1,8 +1,3 @@
-if not Ran then
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/ItoshiTeruz/scripts/main/SlimeTowerTycoon'))()
-    getgenv().Ran = true
-end
-
 for i,v in pairs(game:GetService("Workspace").DragonBreaths:GetDescendants()) do
     if v.Name == "Killer" then
         v:Destroy()
@@ -26,26 +21,7 @@ spawn(function()
     end
 end)
 
-local ChatFrame = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Chat"):WaitForChild("Frame"):WaitForChild("ChatChannelParentFrame"):WaitForChild("Frame_MessageLogDisplay"):WaitForChild("Scroller")
-local Connection = nil
-spawn(function()
-    Connection = ChatFrame.ChildAdded:Connect(function(child)
-        for i,v in pairs(child:GetChildren()) do
-            if v.ClassName == "TextLabel" and v.Text == "You earned a boost from the Wizard's Tower!" then
-                child:Destroy()
-                for a,b in pairs(ChatFrame:GetChildren()) do
-                    if b.ClassName == "Frame" and #b:GetChildren() == 0 then
-                        b:Destroy()
-                    end
-                end
-            end
-        end
-    end)
-end)
-repeat task.wait() until not Enabled
-Connection:Disconnect()
-
--- Script
+-- script
 
 if not funcs then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/exceptional0/scr/main/funcs.lua"))()
@@ -105,6 +81,7 @@ local event = {
     Buy_Dropper = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.BuyDropper,
     Buy_Speed = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.BuySpeed,
     Deposit = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.DepositDrops,
+    Obby = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.FinishObby,
 }
 
 --// Setting
@@ -132,6 +109,13 @@ local Toggle = Automatics:CreateToggle('Auto Sell Slime Drops', false, Color3.fr
 	getgenv().Setting.Deposit = x;
     if x then
         Deposit()
+    end
+end)
+
+local Toggle = Automatics:CreateToggle('Auto Beat Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+	getgenv().Setting.Obby = x;
+    if x then
+        Obby()
     end
 end)
 
