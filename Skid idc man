@@ -68,7 +68,7 @@ end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
 
-local Window = Library:CreateWindow('Vulture V1.0.2', 'Slime Tower Tycoon', 'Vulture V1.0.2', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
+local Window = Library:CreateWindow('Vulture V1.0.3', 'Slime Tower Tycoon', 'Vulture V1.0.3', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
 
 --// Service
 local Players = game:GetService("Players")
@@ -81,7 +81,6 @@ local event = {
     Buy_Dropper = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.BuyDropper,
     Buy_Speed = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.BuySpeed,
     Deposit = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.DepositDrops,
-    Obby = game:GetService("ReplicatedStorage").GTycoonClient.Remotes.FinishObby,
 }
 
 --// Setting
@@ -109,13 +108,6 @@ local Toggle = Automatics:CreateToggle('Auto Sell Slime Drops', false, Color3.fr
 	getgenv().Setting.Deposit = x;
     if x then
         Deposit()
-    end
-end)
-
-local Toggle = Automatics:CreateToggle('Auto Beat Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
-	getgenv().Setting.Obby = x;
-    if x then
-        Obby()
     end
 end)
 
