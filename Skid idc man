@@ -7,7 +7,7 @@ end
 spawn(function()
     while wait() and Enabled do
         function tween(NewCframe)
-            local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2.5), {CFrame = NewCframe})
+            local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1.7), {CFrame = NewCframe})
             tween:Play()
             tween.Completed:Wait()
         end
