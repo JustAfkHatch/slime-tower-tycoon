@@ -1,3 +1,52 @@
+if not Ran then
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/ItoshiTeruz/scripts/main/SlimeTowerTycoon'))()
+    getgenv().Ran = true
+end
+
+for i,v in pairs(game:GetService("Workspace").DragonBreaths:GetDescendants()) do
+    if v.Name == "Killer" then
+        v:Destroy()
+    end
+end
+
+spawn(function()
+    while wait() and Enabled do
+        function tween(NewCframe)
+            local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(2.5), {CFrame = NewCframe})
+            tween:Play()
+            tween.Completed:Wait()
+        end
+
+        local Points = game:GetService("Workspace"):WaitForChild("ObbyCheckpoints")
+        for i = 1, 5 do
+            local str = tostring("ObbyCheckpoint" .. i)
+            tween(Points[str].CFrame)
+        end
+        tween(game:GetService("Workspace"):WaitForChild("ObbyButton"):WaitForChild("Button").CFrame)
+    end
+end)
+
+local ChatFrame = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Chat"):WaitForChild("Frame"):WaitForChild("ChatChannelParentFrame"):WaitForChild("Frame_MessageLogDisplay"):WaitForChild("Scroller")
+local Connection = nil
+spawn(function()
+    Connection = ChatFrame.ChildAdded:Connect(function(child)
+        for i,v in pairs(child:GetChildren()) do
+            if v.ClassName == "TextLabel" and v.Text == "You earned a boost from the Wizard's Tower!" then
+                child:Destroy()
+                for a,b in pairs(ChatFrame:GetChildren()) do
+                    if b.ClassName == "Frame" and #b:GetChildren() == 0 then
+                        b:Destroy()
+                    end
+                end
+            end
+        end
+    end)
+end)
+repeat task.wait() until not Enabled
+Connection:Disconnect()
+
+-- Script
+
 if not funcs then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/exceptional0/scr/main/funcs.lua"))()
 end
