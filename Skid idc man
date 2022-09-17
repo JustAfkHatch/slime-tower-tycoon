@@ -220,11 +220,10 @@ local Button = Misc:CreateButton('Inf Zoom', function()
         end
         end
     end)
-
-local Button = Misc:CreateButton('Anti Afk Script/Low Gfx', function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/batusz/main/roblox/__Anti__Afk__Script__", true))()
+    
+local Button = Misc:CreateButton('Simple Spy V2', function()
+	loadstring(game:HttpGet("https://github.com/exxtremestuffs/SimpleSpySource/raw/master/SimpleSpy.lua"))()
 end)
-
 local Button = Misc:CreateButton('Server Hop', function()
     game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 end)
@@ -248,7 +247,7 @@ local Button = Misc:CreateButton('Rejoin Game', function()
 end)
 
 local Label = Misc:CreateLabel('Made By JustAfkHatch#4279')
-local Label = Misc:CreateLabel('I made it for fun because Fluxus wasnt working correctly')
+local Label = Misc:CreateLabel('Fluxus wasnt working Correctly so i made this!')
 local Label = Misc:CreateLabel('Inspired By BreadLoader/Source')
 
 local LibraryFunctions = Window:CreateTab('UI Settings', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
