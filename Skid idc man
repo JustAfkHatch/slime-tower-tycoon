@@ -136,12 +136,21 @@ local Toggle = Automatics:CreateToggle('Auto Merge', false, Color3.fromRGB(0, 12
     end
 end)
 
+local Player = Tab:CreateSection('Player')
+
+local Textbox = Player:CreateTextbox('Walkspeed', '', function(Value)
+    getgenv().WS = Value
+end)
+local Textbox = Player:CreateTextbox('JumpPower', '', function(Value)
+    getgenv().JP = Value
+end)
+
 getgenv().WS = 29;getgenv().JP = 50;
-local Slider = Automatics:CreateSlider('WalkSpeed', 29, 150, 29, Color3.fromRGB(0, 125, 255), function(x)
+local Slider = Player:CreateSlider('WalkSpeed', 29, 150, 29, Color3.fromRGB(0, 125, 255), function(x)
     getgenv().WS = x;
 end)
 
-local Slider = Automatics:CreateSlider('JumpPower', 50, 400, 50, Color3.fromRGB(0, 125, 255), function(x)
+local Slider = Player:CreateSlider('JumpPower', 50, 250, 50, Color3.fromRGB(0, 125, 255), function(x)
 	getgenv().JP = x;
 end)
 
