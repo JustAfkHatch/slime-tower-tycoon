@@ -68,7 +68,7 @@ end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
 
-local Window = Library:CreateWindow('Vulture V1.0.3', 'Slime Tower Tycoon', 'Vulture V1.0.3', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
+local Window = Library:CreateWindow('Vulture V1.0.4', 'Slime Tower Tycoon', 'Vulture V1.0.4', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
 
 --// Service
 local Players = game:GetService("Players")
@@ -93,7 +93,7 @@ getgenv().Setting = {
 }
 
 --// Script
-local Tab = Window:CreateTab('Automatics', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local Tab = Window:CreateTab('Automatics', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Automatics = Tab:CreateSection('Automatics')
 
@@ -165,9 +165,13 @@ RunService.Stepped:Connect(function()
     end
 end)
 
-local Tab = Window:CreateTab('Misc/Credits', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local Tab = Window:CreateTab('Misc/Credits', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Misc = Tab:CreateSection('Misc/Credits')
+
+local Button = Misc:CreateButton('Hades Hub Script', function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/hdzrblx/hub/master/HadesHub.lua", true))()
+end)
 
 local Button = Misc:CreateButton('Destroy Textures (Fps Boost)', function()
 local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
