@@ -74,6 +74,7 @@ local Window = Library:CreateWindow('Vulture V1.0.4.1', 'Slime Tower Tycoon', 'V
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local RunService = game:GetService("RunService")
+local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
 
 --// Remote
 local event = {
@@ -134,6 +135,47 @@ local Toggle = Automatics:CreateToggle('Auto Merge', false, Color3.fromRGB(0, 12
     if x then
         Merge()
     end
+end)
+
+local Toggle = Automatics:CreateToggle('Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
+   G = GG
+while G do task.wait(0.8)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint1" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.7)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint2" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.7)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint3" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.7)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint4" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.7)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint5" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.7)
+for i,v in pairs(game:GetService("Workspace").ObbyButton:GetDescendants()) do
+           if v.Name == "Button" then
+               HRP.CFrame = v.CFrame * CFrame.Angles(0, 0, math.rad(90)) * CFrame.new(3,4,-2)
+           end
+       end
+end
 end)
 
 local Player = Tab:CreateSection('Player')
