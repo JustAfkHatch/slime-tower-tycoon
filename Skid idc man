@@ -172,9 +172,7 @@ local Misc = Tab:CreateSection('Misc/Credits')
 local Button = Misc:CreateButton('Hades Hub Script', function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/hdzrblx/hub/master/HadesHub.lua", true))()
 end)
-local Button = Misc:CreateButton('Galaxy Hub Script', function()
-	loadstring(game:HttpGet('http://galaxy-hub.gay/whitelist'))()
-end)
+
 local Button = Misc:CreateButton('Destroy Textures (Fps Boost)', function()
 local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
         local g = game
