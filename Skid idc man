@@ -196,8 +196,9 @@ for i,v in pairs(game:GetService("Workspace").ObbyButton:GetDescendants()) do
 end
 end)
 
-local Button = Automatics:CreateButton('Slow Obby Completer', function()
-	spawn(function()
+local Toggle = Automatics:CreateToggle('Slow Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
+   G = GG
+while G do task.wait(0.7)
         function tween(NewCframe)
             local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1.7), {CFrame = NewCframe})
             tween:Play()
@@ -210,6 +211,7 @@ local Button = Automatics:CreateButton('Slow Obby Completer', function()
             tween(Points[str].CFrame)
         end
         tween(game:GetService("Workspace"):WaitForChild("ObbyButton"):WaitForChild("Button").CFrame)
+end
 end)
 
 local Player = Tab:CreateSection('Player')
@@ -244,10 +246,6 @@ end)
 local Tab = Window:CreateTab('Misc/Credits', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Misc = Tab:CreateSection('Misc/Credits')
-
-local Button = Misc:CreateButton('Hades Hub Script', function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/hdzrblx/hub/master/HadesHub.lua", true))()
-end)
 
 local Button = Misc:CreateButton('Destroy Textures (Fps Boost)', function()
 local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
@@ -445,4 +443,3 @@ function Merge()
         end
     end)
 end
-end)
