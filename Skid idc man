@@ -90,21 +90,21 @@ local Automatics = Tab:CreateSection('Automatics')
 	end
 	local PlotLabel = Automatics:CreateLabel('Your plot number is: ' .. Plot)
 
-local Toggle = Automatics:CreateToggle('Auto Collect Slime Drops', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+local Toggle = Automatics:CreateToggle('Auto Collect Drops', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
 getgenv().Setting.Grab_slime = x;
     if x then
         Grab_slime()
     end
 end)
 
-local Toggle = Automatics:CreateToggle('Auto Sell Slime Drops', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+local Toggle = Automatics:CreateToggle('Auto Deposit', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
 	getgenv().Setting.Deposit = x;
     if x then
         Deposit()
     end
 end)
 
-local Toggle = Automatics:CreateToggle('Auto Buy Rate Speed', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+local Toggle = Automatics:CreateToggle('Auto Buy RATE Speed', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
 	getgenv().Setting.Buy_Speed = x;
     if x then
         Buy_Speed()
@@ -122,7 +122,7 @@ local Toggle = Automatics:CreateToggle('Auto Buy Slimes', false, Color3.fromRGB(
     end
 end)
 
-local Toggle = Automatics:CreateToggle('Auto Merge', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+local Toggle = Automatics:CreateToggle('Auto Merge Slimes', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
 	getgenv().Setting.Merge = x;
     if x then
         Merge()
