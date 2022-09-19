@@ -4,23 +4,6 @@ for i,v in pairs(game:GetService("Workspace").DragonBreaths:GetDescendants()) do
     end
 end
 
-spawn(function()
-    while wait() and Enabled do
-        function tween(NewCframe)
-            local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1.7), {CFrame = NewCframe})
-            tween:Play()
-            tween.Completed:Wait()
-        end
-
-        local Points = game:GetService("Workspace"):WaitForChild("ObbyCheckpoints")
-        for i = 1, 5 do
-            local str = tostring("ObbyCheckpoint" .. i)
-            tween(Points[str].CFrame)
-        end
-        tween(game:GetService("Workspace"):WaitForChild("ObbyButton"):WaitForChild("Button").CFrame)
-    end
-end)
-
 -- script
 
 if not funcs then
@@ -68,13 +51,14 @@ end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
 
-local Window = Library:CreateWindow('Vulture V1.0.4.1', 'Slime Tower Tycoon', 'Vulture V1.0.4.1', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
+local Window = Library:CreateWindow('Vulture V1.0.6', 'Slime Tower Tycoon', 'Vulture V1.0.6', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
 
 --// Service
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local RunService = game:GetService("RunService")
 local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+local RootPart = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 
 --// Remote
 local event = {
@@ -97,6 +81,14 @@ getgenv().Setting = {
 local Tab = Window:CreateTab('Automatics', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Automatics = Tab:CreateSection('Automatics')
+
+	local Plot
+	for i, v in pairs(Workspace.Plots:GetDescendants()) do
+		if v.Name == "Buttons" then
+			Plot = tostring(v.Parent.Name)
+		end
+	end
+	local PlotLabel = Automatics:CreateLabel('Your plot number is: ' .. Plot)
 
 local Toggle = Automatics:CreateToggle('Auto Collect Slime Drops', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
 getgenv().Setting.Grab_slime = x;
@@ -137,7 +129,33 @@ local Toggle = Automatics:CreateToggle('Auto Merge', false, Color3.fromRGB(0, 12
     end
 end)
 
-local Toggle = Automatics:CreateToggle('Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
+getgenv().AutoObby = false
+	local AutoObbyToggle = Automatics:CreateToggle('Auto Obby Without Moving', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+		AutoObby = Value
+		task.spawn(function()
+			while AutoObby == true do
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 1)
+				task.wait(0.7)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint2, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint2, 1)
+				task.wait(0.7)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint3, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint3, 1)
+				task.wait(0.7)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint4, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint4, 1)
+				task.wait(0.7)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint5, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint5, 1)
+				task.wait(0.7)
+				firetouchinterest(RootPart, workspace.ObbyButton.Button, 0)
+				firetouchinterest(RootPart, workspace.ObbyButton.Button, 1)
+			end
+		end)
+	end)
+
+local Toggle = Automatics:CreateToggle('Original Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
    G = GG
 while G do task.wait(0.8)
 for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
@@ -176,6 +194,22 @@ for i,v in pairs(game:GetService("Workspace").ObbyButton:GetDescendants()) do
            end
        end
 end
+end)
+
+local Button = Automatics:CreateButton('Slow Obby Completer', function()
+	spawn(function()
+        function tween(NewCframe)
+            local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1.7), {CFrame = NewCframe})
+            tween:Play()
+            tween.Completed:Wait()
+        end
+
+        local Points = game:GetService("Workspace"):WaitForChild("ObbyCheckpoints")
+        for i = 1, 5 do
+            local str = tostring("ObbyCheckpoint" .. i)
+            tween(Points[str].CFrame)
+        end
+        tween(game:GetService("Workspace"):WaitForChild("ObbyButton"):WaitForChild("Button").CFrame)
 end)
 
 local Player = Tab:CreateSection('Player')
@@ -411,3 +445,4 @@ function Merge()
         end
     end)
 end
+end)
