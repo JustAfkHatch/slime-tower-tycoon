@@ -4,46 +4,55 @@ for i,v in pairs(game:GetService("Workspace").DragonBreaths:GetDescendants()) do
     end
 end
 
--- script
+getgenv().Bitch = true
 
-if not funcs then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/exceptional0/scr/main/funcs.lua"))()
+if Bitch then
+   getgenv().Text = Drawing.new("Text")
+   Text.Color = Color3.new(0, 1, 1)
+   Text.Font = 1
+   Text.Outline = true
+   Text.OutlineColor = Color3.new(0, 0, 0)
+   Text.Position = Vector2.new(1300, game:GetService("Workspace").CurrentCamera.ViewportSize.Y - 25)
+   Text.Size = 18
+   Text.Text = "Test"
+   Text.Visible = false
 end
+local A =
+   game:GetService("RunService").RenderStepped:Connect(
+   function(v)
+       pcall(
+           function()
+               if Bitch then
+                   Text.Visible = true
+                   Text.Text =
+                       "Date: " ..
+                       tostring(os.date()) ..
+                           (" Ping: " ..
+                               game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(
+                                   math.round(2 / v)
+                               )) ..
+                               "  " .. ("FPS: " .. math.round(1 / v))
+                   Text.Color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
+                   local textBoundsX = Text.TextBounds.X
 
-local tps = game:GetService("TeleportService")
-game:GetService("CoreGui").RobloxPromptGui.promptOverlay.DescendantAdded:Connect(function()
-    local GUI = game.CoreGui.RobloxPromptGui.promptOverlay:FindFirstChild("ErrorPrompt")
-    if GUI then
-        if GUI.TitleFrame.ErrorTitle.Text:lower():match("disconnected") then
-            if #game.Players:GetPlayers() <= 1 then
-                game.Players.LocalPlayer:Kick("\nRejoining...")
-                task.wait(3)
-                tps:Teleport(game.PlaceId, game.Players.LocalPlayer)
-                while task.wait(15) do
-                tps:Teleport(game.PlaceId, game.Players.LocalPlayer)
-                end
-            else
-                task.wait(3)
-                tps:TeleportToPlaceInstance(game.PlaceId, game.JobId, funcs.lplr)
-                while task.wait(15) do
-                tps:TeleportToPlaceInstance(game.PlaceId, game.JobId, funcs.lplr)
-                end
-            end
-        end
-    end
-end)
+                   local viewportSizeX = game:GetService("Workspace").CurrentCamera.ViewportSize.X
 
-local prompt = game:GetService("CoreGui"):FindFirstChild("RobloxPromptGui"):FindFirstChild("promptOverlay")
+                   local positionY = Text.Position.Y
+                   Text.Position = Vector2.new(viewportSizeX - textBoundsX, positionY)
+               elseif not Bitch then
+                   Text:Remove()
+               end
+           end
+       )
+   end
+)
 
-prompt.ChildAdded:Connect(function(obj)
-    if obj.Name == "ErrorPrompt" and obj:IsA("Frame") then
-        game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
-    end
-end)
 
 for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
 v:Disable()
 end
+
+-- script
 
 while task.wait() do
     if game:IsLoaded() then break; end
@@ -51,7 +60,7 @@ end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
 
-local Window = Library:CreateWindow('Vulture V1.0.6', 'Slime Tower Tycoon', 'Vulture V1.0.6', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
+local Window = Library:CreateWindow('Giga Chad Z', 'Slime Tower Tycoon', 'Vulture V1.0.6', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
 
 --// Service
 local Players = game:GetService("Players")
@@ -129,8 +138,10 @@ local Toggle = Automatics:CreateToggle('Auto Merge Slimes', false, Color3.fromRG
     end
 end)
 
+local Obby = Tab:CreateSection('Auto Obby')
+
 getgenv().AutoObby = false
-	local AutoObbyToggle = Automatics:CreateToggle('Auto Obby Without Moving', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+	local AutoObbyToggle = Obby:CreateToggle('Auto Obby Without Moving', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
 		AutoObby = Value
 		task.spawn(function()
 			while AutoObby == true do
@@ -155,7 +166,7 @@ getgenv().AutoObby = false
 		end)
 	end)
 
-local Toggle = Automatics:CreateToggle('Original Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
+local Toggle = Obby:CreateToggle('Original Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
    G = GG
 while G do task.wait(0.8)
 for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
@@ -196,7 +207,7 @@ for i,v in pairs(game:GetService("Workspace").ObbyButton:GetDescendants()) do
 end
 end)
 
-local Toggle = Automatics:CreateToggle('Slow Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
+local Toggle = Obby:CreateToggle('Slow Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
    G = GG
 while G do task.wait(0.7)
         function tween(NewCframe)
