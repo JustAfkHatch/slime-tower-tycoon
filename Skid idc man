@@ -4,50 +4,6 @@ for i,v in pairs(game:GetService("Workspace").DragonBreaths:GetDescendants()) do
     end
 end
 
-getgenv().Bitch = true
-
-if Bitch then
-   getgenv().Text = Drawing.new("Text")
-   Text.Color = Color3.new(0, 1, 1)
-   Text.Font = 1
-   Text.Outline = true
-   Text.OutlineColor = Color3.new(0, 0, 0)
-   Text.Position = Vector2.new(1300, game:GetService("Workspace").CurrentCamera.ViewportSize.Y - 25)
-   Text.Size = 18
-   Text.Text = "Test"
-   Text.Visible = false
-end
-local A =
-   game:GetService("RunService").RenderStepped:Connect(
-   function(v)
-       pcall(
-           function()
-               if Bitch then
-                   Text.Visible = true
-                   Text.Text =
-                       "Date: " ..
-                       tostring(os.date()) ..
-                           (" Ping: " ..
-                               game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(
-                                   math.round(2 / v)
-                               )) ..
-                               "  " .. ("FPS: " .. math.round(1 / v))
-                   Text.Color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
-                   local textBoundsX = Text.TextBounds.X
-
-                   local viewportSizeX = game:GetService("Workspace").CurrentCamera.ViewportSize.X
-
-                   local positionY = Text.Position.Y
-                   Text.Position = Vector2.new(viewportSizeX - textBoundsX, positionY)
-               elseif not Bitch then
-                   Text:Remove()
-               end
-           end
-       )
-   end
-)
-
-
 for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
 v:Disable()
 end
@@ -60,7 +16,7 @@ end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
 
-local Window = Library:CreateWindow('Giga Chad Z', 'Slime Tower Tycoon', 'Vulture V1.0.6', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
+local Window = Library:CreateWindow('Giga Chad Z', 'Slime Tower Tycoon', 'Vulture V1.1', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
 
 --// Service
 local Players = game:GetService("Players")
@@ -113,14 +69,14 @@ local Toggle = Automatics:CreateToggle('Auto Deposit', false, Color3.fromRGB(0, 
     end
 end)
 
-local Toggle = Automatics:CreateToggle('Auto Buy RATE Speed', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
+local Toggle = Automatics:CreateToggle('Auto Buy RATE', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
 	getgenv().Setting.Buy_Speed = x;
     if x then
         Buy_Speed()
     end
 end)
 
-local Dropdown = Automatics:CreateDropdown('Buy Slimes', {'1', '5', '25', '50', '100'}, '1', 0.25, function(x)
+local Dropdown = Automatics:CreateDropdown('Buy Slimes', {'1', '2', '3', '4', '5', '6', '7', '8', '9', '10','11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '35', '50', '75', '100'}, '1', 0.25, function(x)
     getgenv().Setting.Buy_Dropper.unit = x;
 end)
 
@@ -147,19 +103,19 @@ getgenv().AutoObby = false
 			while AutoObby == true do
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 0)
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 1)
-				task.wait(0.7)
+				task.wait(0.69)
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint2, 0)
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint2, 1)
-				task.wait(0.7)
+				task.wait(0.69)
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint3, 0)
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint3, 1)
-				task.wait(0.7)
+				task.wait(0.69)
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint4, 0)
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint4, 1)
-				task.wait(0.7)
+				task.wait(0.69)
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint5, 0)
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint5, 1)
-				task.wait(0.7)
+				task.wait(0.69)
 				firetouchinterest(RootPart, workspace.ObbyButton.Button, 0)
 				firetouchinterest(RootPart, workspace.ObbyButton.Button, 1)
 			end
@@ -168,37 +124,37 @@ getgenv().AutoObby = false
 
 local Toggle = Obby:CreateToggle('Original Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
    G = GG
-while G do task.wait(0.8)
+while G do task.wait(0.75)
 for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
            if v.Name == "ObbyCheckpoint1" then
                HRP.CFrame = v.CFrame
            end
        end
-wait(0.7)
+wait(0.75)
 for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
            if v.Name == "ObbyCheckpoint2" then
                HRP.CFrame = v.CFrame
            end
        end
-wait(0.7)
+wait(0.75)
 for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
            if v.Name == "ObbyCheckpoint3" then
                HRP.CFrame = v.CFrame
            end
        end
-wait(0.7)
+wait(0.75)
 for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
            if v.Name == "ObbyCheckpoint4" then
                HRP.CFrame = v.CFrame
            end
        end
-wait(0.7)
+wait(0.75)
 for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
            if v.Name == "ObbyCheckpoint5" then
                HRP.CFrame = v.CFrame
            end
        end
-wait(0.7)
+wait(0.75)
 for i,v in pairs(game:GetService("Workspace").ObbyButton:GetDescendants()) do
            if v.Name == "Button" then
                HRP.CFrame = v.CFrame * CFrame.Angles(0, 0, math.rad(90)) * CFrame.new(3,4,-2)
@@ -209,7 +165,7 @@ end)
 
 local Toggle = Obby:CreateToggle('Slow Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
    G = GG
-while G do task.wait(0.7)
+while G do task.wait(0.66)
         function tween(NewCframe)
             local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1.7), {CFrame = NewCframe})
             tween:Play()
