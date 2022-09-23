@@ -16,7 +16,7 @@ end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
 
-local Window = Library:CreateWindow('Giga Chad Z', 'Slime Tower Tycoon', 'Vulture V1.2', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
+local Window = Library:CreateWindow('Vulture Wings', 'Slime Tower Tycoon', 'Vulture V1.2', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
 
 --// Service
 local Players = game:GetService("Players")
@@ -43,6 +43,12 @@ getgenv().Setting = {
 }
 
 --// Script
+local Tab = Window:CreateTab('ChangeLogs', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local ChangeLogs = Tab:CreateSection('Changelogs To Vulture V1')
+
+local Label = ChangeLogs:CreateLabel('Added New Tab (Auto Obby) Maybe Adding My Own Auto Obby Soon!')
+
 local Tab = Window:CreateTab('Automatics', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Automatics = Tab:CreateSection('Automatics')
@@ -94,7 +100,11 @@ local Toggle = Automatics:CreateToggle('Auto Merge Slimes', false, Color3.fromRG
     end
 end)
 
+local Tab = Window:CreateTab('Automatic Obby', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
 local Obby = Tab:CreateSection('Auto Obby')
+
+local Auto_Obby = Obby:CreateLabel('Buttons Coming Soon, New Obby Coming Soon Too')
 
 getgenv().AutoObby = false
 	local AutoObbyToggle = Obby:CreateToggle('Auto Obby Without Moving', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
@@ -190,7 +200,7 @@ local Textbox = Player:CreateTextbox('JumpPower', '', function(Value)
     getgenv().JP = Value
 end)
 
-getgenv().WS = 29;getgenv().JP = 50;
+getgenv().WS = 50;getgenv().JP = 50;
 local Slider = Player:CreateSlider('WalkSpeed', 29, 150, 29, Color3.fromRGB(0, 125, 255), function(x)
     getgenv().WS = x;
 end)
@@ -292,7 +302,7 @@ local Button = Misc:CreateButton('Rejoin Game', function()
 end)
 
 local Label = Misc:CreateLabel('Made By JustAfkHatch#4279')
-local Label = Misc:CreateLabel('Fluxus wasnt working Correctly so i made this!')
+local Label = Misc:CreateLabel('Im A Giga Chad For Updating')
 local Label = Misc:CreateLabel('Inspired By BreadLoader/Source')
 
 local LibraryFunctions = Window:CreateTab('UI Settings', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
@@ -303,7 +313,7 @@ local DestroyButton = UIFunctions:CreateButton('Destroy UI', function()
     Library:DestroyUI()
 end)
 
-local ToggleKeybind = UIFunctions:CreateKeybind('Toggle UI', 'Q', function()
+local ToggleKeybind = UIFunctions:CreateKeybind('Toggle UI', 'T', function()
     Library:ToggleUI()
 end)
 
