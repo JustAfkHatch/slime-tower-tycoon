@@ -67,29 +67,27 @@ getgenv().Setting = {
 }
 
 --// Script
-local Tab = Window:CreateTab('ChangeLogs', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local Tab = Window:CreateTab('Epik ChangeLogs', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
-local ChangeLogs = Tab:CreateSection('Changelogs To Vulture V1')
+local ChangeLog = Tab:CreateSection('Coming Soon!')
+local Label = ChangeLog:CreateLabel('Probably Next Update')
+local Label = ChangeLog:CreateLabel('Added Dex Explorer (tommorow)')
 
-local Label = ChangeLogs:CreateLabel('Added Mine Coded Auto OBBY (8 Checkpoints)')
+local ChangeLogs = Tab:CreateSection('Fixes/Already Added!')
+local Label = ChangeLog:CreateLabel('Something Coming Soon!')
+local Label = ChangeLogs:CreateLabel('Added Mine Own Coded Auto OBBY (8 Checkpoints)')
 local Label = ChangeLogs:CreateLabel('Added Manualy Buttons for Obbies 1/8 Only')
 local Label = ChangeLogs:CreateLabel('Added Remove Swords (Near Wizard)')
 local Label = ChangeLogs:CreateLabel('Added Remove SwampKiller (OBBY 2)')
 local Label = ChangeLogs:CreateLabel('Fixed Dragon Killing you')
-local Label = ChangeLogs:CreateLabel('Script Already has Anti Afk When Executed!')
+local Label = ChangeLogs:CreateLabel('Added Remove All Ads,The Annoying Faded Screen')
+local Label = ChangeLogs:CreateLabel('Added Remove Obby Barriers')
 
 
 local Tab = Window:CreateTab('Automatics', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Automatics = Tab:CreateSection('Automatics')
-
-	local Plot
-	for i, v in pairs(Workspace.Plots:GetDescendants()) do
-		if v.Name == "Buttons" then
-			Plot = tostring(v.Parent.Name)
-		end
-	end
-	local PlotLabel = Automatics:CreateLabel('Your plot number is: ' .. Plot)
+local Label = Automatics:CreateLabel('Heads up,Mods can ban you now so use private servers')
 
 local Toggle = Automatics:CreateToggle('Auto Collect Drops', false, Color3.fromRGB(0, 125, 255), 0.25, function(x)
 getgenv().Setting.Grab_slime = x;
@@ -157,6 +155,7 @@ getgenv().AutoObby = false
 		AutoObby = AO
 		task.spawn(function()
 			while AutoObby == true do
+                task.wait(0.69)
                 firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 0)
 				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 1)
 				task.wait(0.69)
@@ -187,6 +186,7 @@ getgenv().AutoObby = false
 		end)
 	end)
 local Button = Obby:CreateButton('Manual WITHOUT MOVING', function()
+        task.wait(0.69)
         firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 0)
 		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 1)
 		task.wait(0.69)
@@ -464,6 +464,10 @@ end)
 local Tab = Window:CreateTab('Misc', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Misc = Tab:CreateSection('Misc')
+
+local Button = Misc:CreateButton('Remove ALL ANNOYING ADS', function()
+
+end)
 
 local Button = Misc:CreateButton('Remove ALL ANNOYING ADS', function()
 	for i,v in pairs(game:GetService("Workspace").ADS:GetDescendants()) do
