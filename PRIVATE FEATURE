@@ -1,5 +1,23 @@
-for i,v in pairs(game:GetService("Workspace").DragonBreaths:GetDescendants()) do
+for i,v in pairs(game:GetService("Workspace").Obby.DragonBreaths:GetDescendants()) do
     if v.Name == "Killer" then
+        v:Destroy()
+    end
+end
+
+for i,v in pairs(game:GetService("Workspace").SpinningSwords:GetDescendants()) do
+    if v.Name == "Sword" then
+        v:Destroy()
+    end
+end
+
+for i,v in pairs(game:GetService("Workspace").SwampKillBrick:GetDescendants()) do
+    if v.Name == "TouchInterest" then
+        v:Destroy()
+    end
+end
+
+for i,v in pairs(game:GetService("Workspace").Obby.ObbyBarriers:GetDescendants()) do
+    if v.Name == "Part" then
         v:Destroy()
     end
 end
@@ -16,7 +34,7 @@ end
 
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
 
-local Window = Library:CreateWindow('Vulture Wings', 'Slime Tower Tycoon', 'Vulture V1.2', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
+local Window = Library:CreateWindow('Vulture Wings', 'Slime Tower Tycoon', 'Vulture V1.4', 'rbxassetid://10618928818', false, 'VisualUIConfigs', 'Default')
 
 --// Service
 local Players = game:GetService("Players")
@@ -47,7 +65,13 @@ local Tab = Window:CreateTab('ChangeLogs', true, 'rbxassetid://3926305904', Vect
 
 local ChangeLogs = Tab:CreateSection('Changelogs To Vulture V1')
 
-local Label = ChangeLogs:CreateLabel('Added New Tab (Auto Obby) Maybe Adding My Own Auto Obby Soon!')
+local Label = ChangeLogs:CreateLabel('Added Mine Coded Auto OBBY (8 Checkpoints)')
+local Label = ChangeLogs:CreateLabel('Added Manualy Buttons for Obbies 1/8 Only')
+local Label = ChangeLogs:CreateLabel('Added Remove Sword Damages (Near Wizard)')
+local Label = ChangeLogs:CreateLabel('Added Remove Slime (OBBY 2)')
+local Label = ChangeLogs:CreateLabel('Fixed Dragon Killing you noobs')
+local Label = ChangeLogs:CreateLabel('Script Already has Anti Afk When Executed!')
+
 
 local Tab = Window:CreateTab('Automatics', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
@@ -100,14 +124,245 @@ local Toggle = Automatics:CreateToggle('Auto Merge Slimes', false, Color3.fromRG
     end
 end)
 
+local Player = Tab:CreateSection('Player')
+
+local Textbox = Player:CreateTextbox('Walkspeed', '', function(Value)
+    getgenv().WS = Value
+end)
+local Textbox = Player:CreateTextbox('JumpPower', '', function(Value)
+    getgenv().JP = Value
+end)
+
+getgenv().WS = 50;getgenv().JP = 50;
+local Slider = Player:CreateSlider('WalkSpeed', 29, 150, 29, Color3.fromRGB(0, 125, 255), function(x)
+    getgenv().WS = x;
+end)
+
+local Slider = Player:CreateSlider('JumpPower', 50, 250, 50, Color3.fromRGB(0, 125, 255), function(x)
+	getgenv().JP = x;
+end)
+
 local Tab = Window:CreateTab('Automatic Obby', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Obby = Tab:CreateSection('Auto Obby')
 
-local Auto_Obby = Obby:CreateLabel('Buttons Coming Soon, New Obby Coming Soon Too')
+local Auto_Obby = Obby:CreateLabel('NEW UPDATE! CHECK CHANGELOGS')
 
 getgenv().AutoObby = false
-	local AutoObbyToggle = Obby:CreateToggle('Auto Obby Without Moving', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+	local AutoObbyToggle = Obby:CreateToggle('(BEST) Auto Obby 1/8 CP', false, Color3.fromRGB(0, 125, 255), 0.25, function(AO)
+		AutoObby = AO
+		task.spawn(function()
+			while AutoObby == true do
+                firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 1)
+				task.wait(0.69)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint2, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint2, 1)
+				task.wait(0.69)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint3, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint3, 1)
+				task.wait(0.69)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint4, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint4, 1)
+				task.wait(0.69)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint5, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint5, 1)
+				task.wait(0.69)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint6, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint6, 1)
+				task.wait(0.69)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint7, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint7, 1)
+				task.wait(0.69)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint8, 0)
+				firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint8, 1)
+				task.wait(0.69)
+				firetouchinterest(RootPart, workspace.ObbyButton2.Button, 0)
+				firetouchinterest(RootPart, workspace.ObbyButton2.Button, 1)
+			end
+		end)
+	end)
+local Button = Obby:CreateButton('Manual WITHOUT MOVING', function()
+        firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 0)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint1, 1)
+		task.wait(0.69)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint2, 0)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint2, 1)
+		task.wait(0.69)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint3, 0)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint3, 1)
+		task.wait(0.69)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint4, 0)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint4, 1)
+		task.wait(0.69)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint5, 0)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint5, 1)
+		task.wait(0.69)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint6, 0)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint6, 1)
+		task.wait(0.69)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint7, 0)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint7, 1)
+		task.wait(0.69)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint8, 0)
+		firetouchinterest(RootPart, workspace.ObbyCheckpoints.ObbyCheckpoint8, 1)
+		task.wait(0.69)
+		firetouchinterest(RootPart, workspace.ObbyButton2.Button, 0)
+		firetouchinterest(RootPart, workspace.ObbyButton2.Button, 1)
+end)
+
+local Toggle = Obby:CreateToggle('Original Auto Obby 1/8 CP', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
+   G = GG
+while G do task.wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint1" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint2" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint3" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint4" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint5" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint6" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint7" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint8" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyButton2:GetDescendants()) do
+           if v.Name == "Button" then
+               HRP.CFrame = v.CFrame * CFrame.Angles(0, 0, math.rad(90)) * CFrame.new(3,4,-2)
+           end
+       end
+end
+end)
+
+local Button = Obby:CreateButton('Manual Original Obby', function()
+    for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint1" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint2" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint3" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint4" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint5" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint6" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint7" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+wait(0.75)
+for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
+           if v.Name == "ObbyCheckpoint8" then
+               HRP.CFrame = v.CFrame
+           end
+       end
+       wait(0.75)
+       for i,v in pairs(game:GetService("Workspace").ObbyButton2:GetDescendants()) do
+           if v.Name == "Button" then
+               HRP.CFrame = v.CFrame * CFrame.Angles(0, 0, math.rad(90)) * CFrame.new(3,4,-2)
+           end
+       end
+end)
+
+local Toggle = Obby:CreateToggle('Slow Auto Obby 1/8', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
+   G = GG
+while G do task.wait(0.66)
+        function tween(NewCframe)
+            local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1.7), {CFrame = NewCframe})
+            tween:Play()
+            tween.Completed:Wait()
+        end
+
+        local Points = game:GetService("Workspace"):WaitForChild("ObbyCheckpoints")
+        for i = 1, 8 do
+            local str = tostring("ObbyCheckpoint" .. i)
+            tween(Points[str].CFrame)
+        end
+        tween(game:GetService("Workspace"):WaitForChild("ObbyButton2"):WaitForChild("Button").CFrame)
+end
+end)
+
+local Button = Obby:CreateButton('Manual Slow Obby', function()
+    function tween(NewCframe)
+            local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1.7), {CFrame = NewCframe})
+            tween:Play()
+            tween.Completed:Wait()
+        end
+
+        local Points = game:GetService("Workspace"):WaitForChild("ObbyCheckpoints")
+        for i = 1, 8 do
+            local str = tostring("ObbyCheckpoint" .. i)
+            tween(Points[str].CFrame)
+        end
+        tween(game:GetService("Workspace"):WaitForChild("ObbyButton2"):WaitForChild("Button").CFrame)
+end)
+
+local OldObby = Tab:CreateSection('1/5 Checkpoints For Obby')
+
+getgenv().AutoObby = false
+	local AutoObbyToggle = OldObby:CreateToggle('Auto Obby 1/5 CP', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
 		AutoObby = Value
 		task.spawn(function()
 			while AutoObby == true do
@@ -132,9 +387,9 @@ getgenv().AutoObby = false
 		end)
 	end)
 
-local Toggle = Obby:CreateToggle('Original Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
-   G = GG
-while G do task.wait(0.75)
+    local Toggle = OldObby:CreateToggle('Original Auto Obby 1/5', false, Color3.fromRGB(0, 125, 255), 0.25, function(L)
+   L = GG
+while L do task.wait(0.75)
 for i,v in pairs(game:GetService("Workspace").ObbyCheckpoints:GetDescendants()) do
            if v.Name == "ObbyCheckpoint1" then
                HRP.CFrame = v.CFrame
@@ -173,9 +428,9 @@ for i,v in pairs(game:GetService("Workspace").ObbyButton:GetDescendants()) do
 end
 end)
 
-local Toggle = Obby:CreateToggle('Slow Auto Obby', false, Color3.fromRGB(0, 125, 255), 0.25, function(GG)
-   G = GG
-while G do task.wait(0.66)
+local Toggle = OldObby:CreateToggle('Slow Auto Obby 1/5 CP', false, Color3.fromRGB(0, 125, 255), 0.25, function(H)
+   H = GG
+while H do task.wait(0.66)
         function tween(NewCframe)
             local tween =  game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1.7), {CFrame = NewCframe})
             tween:Play()
@@ -189,24 +444,6 @@ while G do task.wait(0.66)
         end
         tween(game:GetService("Workspace"):WaitForChild("ObbyButton"):WaitForChild("Button").CFrame)
 end
-end)
-
-local Player = Tab:CreateSection('Player')
-
-local Textbox = Player:CreateTextbox('Walkspeed', '', function(Value)
-    getgenv().WS = Value
-end)
-local Textbox = Player:CreateTextbox('JumpPower', '', function(Value)
-    getgenv().JP = Value
-end)
-
-getgenv().WS = 50;getgenv().JP = 50;
-local Slider = Player:CreateSlider('WalkSpeed', 29, 150, 29, Color3.fromRGB(0, 125, 255), function(x)
-    getgenv().WS = x;
-end)
-
-local Slider = Player:CreateSlider('JumpPower', 50, 250, 50, Color3.fromRGB(0, 125, 255), function(x)
-	getgenv().JP = x;
 end)
 
 RunService.Stepped:Connect(function()
@@ -269,7 +506,7 @@ local Button = Misc:CreateButton('Inf Zoom', function()
             game.Players.LocalPlayer.CameraMaxZoomDistance = 30
             InfiniteZoom = false
                 else
-                    InfiniteZoom = true
+                InfiniteZoom = true
                 if InfiniteZoom == true then
         game.Players.LocalPlayer.CameraMaxZoomDistance = 123456789
         end
