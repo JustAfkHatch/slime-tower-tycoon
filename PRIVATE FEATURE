@@ -10,6 +10,12 @@ for i,v in pairs(game:GetService("Workspace").SpinningSwords:GetDescendants()) d
     end
 end
 
+for i,v in pairs(game:GetService("ReplicatedStorage").GTycoonClient.Modules.FadeScreen:GetDescendants()) do
+    if v.Name == "Fader" then
+        v:Destroy()
+    end
+end
+
 for i,v in pairs(game:GetService("Workspace").SwampKillBrick:GetDescendants()) do
     if v.Name == "TouchInterest" then
         v:Destroy()
@@ -67,9 +73,9 @@ local ChangeLogs = Tab:CreateSection('Changelogs To Vulture V1')
 
 local Label = ChangeLogs:CreateLabel('Added Mine Coded Auto OBBY (8 Checkpoints)')
 local Label = ChangeLogs:CreateLabel('Added Manualy Buttons for Obbies 1/8 Only')
-local Label = ChangeLogs:CreateLabel('Added Remove Sword Damages (Near Wizard)')
-local Label = ChangeLogs:CreateLabel('Added Remove Slime (OBBY 2)')
-local Label = ChangeLogs:CreateLabel('Fixed Dragon Killing you noobs')
+local Label = ChangeLogs:CreateLabel('Added Remove Swords (Near Wizard)')
+local Label = ChangeLogs:CreateLabel('Added Remove SwampKiller (OBBY 2)')
+local Label = ChangeLogs:CreateLabel('Fixed Dragon Killing you')
 local Label = ChangeLogs:CreateLabel('Script Already has Anti Afk When Executed!')
 
 
@@ -458,6 +464,49 @@ end)
 local Tab = Window:CreateTab('Misc', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Misc = Tab:CreateSection('Misc')
+
+local Button = Obby:CreateButton('Remove ALL ANNOYING ADS', function()
+	for i,v in pairs(game:GetService("Workspace").ADS:GetDescendants()) do
+    if v.Name == "ADS_1" then
+        v:Destroy()
+    end
+end
+for i,v in pairs(game:GetService("Workspace").ADS:GetDescendants()) do
+    if v.Name == "ADS_2" then
+        v:Destroy()
+    end
+end
+for i,v in pairs(game:GetService("Workspace").ADS:GetDescendants()) do
+    if v.Name == "ADS_3" then
+        v:Destroy()
+    end
+end
+for i,v in pairs(game:GetService("Workspace").ADS:GetDescendants()) do
+    if v.Name == "ADS_4" then
+        v:Destroy()
+    end
+end
+for i,v in pairs(game:GetService("Workspace").ADS:GetDescendants()) do
+    if v.Name == "ADS_5" then
+        v:Destroy()
+    end
+end
+for i,v in pairs(game:GetService("Workspace").ADS:GetDescendants()) do
+    if v.Name == "ADS_6" then
+        v:Destroy()
+    end
+end
+for i,v in pairs(game:GetService("Workspace").ADS:GetDescendants()) do
+    if v.Name == "ADS_7" then
+        v:Destroy()
+    end
+end
+for i,v in pairs(game:GetService("Workspace").ADS:GetDescendants()) do
+    if v.Name == "ADS_8" then
+        v:Destroy()
+    end
+end
+end)
 
 local Button = Misc:CreateButton('Destroy Textures (Fps Boost)', function()
 local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
