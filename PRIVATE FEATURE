@@ -465,7 +465,7 @@ local Tab = Window:CreateTab('Misc', false, 'rbxassetid://3926305904', Vector2.n
 
 local Misc = Tab:CreateSection('Misc')
 
-local Button = Obby:CreateButton('Remove ALL ANNOYING ADS', function()
+local Button = Misc:CreateButton('Remove ALL ANNOYING ADS', function()
 	for i,v in pairs(game:GetService("Workspace").ADS:GetDescendants()) do
     if v.Name == "ADS_1" then
         v:Destroy()
